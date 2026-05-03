@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // ---------- Contact form (demo validation) ----------
+  // ---------- Contact form (Netlify AJAX submit) ----------
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -207,17 +207,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (formMsg) {
-        formMsg.textContent = 'Thanks! Your message has been received (demo).';
-        formMsg.style.color = 'var(--success)';
-      }
-      form.reset();
+      const formData = new FormData(form);
 
-      /* Example for real submit:
-         fetch('/api/contact', { method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name: nm, email, message: msg })})
-           .then(r => r.json()).then(res => { ... })
-           .catch(err => { ... });
-      */
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        if (formMsg) {
+          formMsg.textContent = 'Thanks! Your message has been sent successfully.';
+          formMsg.style.color = 'var(--success)';
+        }
+        form.reset();
+      })
+      .catch((error) => {
+        if (formMsg) {
+          formMsg.textContent = 'Oops! There was a problem submitting your form.';
+          formMsg.style.color = 'var(--danger)';
+        }
+      });
     });
   }
 
