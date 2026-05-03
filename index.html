@@ -273,7 +273,7 @@
       </div>
 
       <div class="proj-actions">
-        <a class="btn-outline" href="https://github.com/Naveen2094/Volunteer-Connect" target="_blank" rel="noopener noreferrer">Code</a>
+        <a class="btn-outline" href="https://github.com/Naveen2094/VolunteerConnect" target="_blank" rel="noopener noreferrer">Code</a>
       <button class="btn-primary view-btn" type="button">Preview</button>
       </div>
     </div>
@@ -424,7 +424,11 @@
 
       <div class="contact-grid">
 
-        <form id="contact-form" class="contact-form" novalidate>
+        <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="sr-only">
+            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+          </p>
           <label>
             <span>Name</span>
             <input type="text" name="name" id="name" required placeholder="Your name">
