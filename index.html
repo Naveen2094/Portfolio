@@ -9,9 +9,13 @@
   <!-- Social / SEO -->
   <meta property="og:title" content="Naveen Kumar — Full-stack Web Developer">
   <meta property="og:description" content="B.Tech (IT) student and full-stack web developer (React, Node) from Chennai.">
-  <meta property="og:image" content="https://yourdomain.com/og-image.png">
+  <meta property="og:image" content="https://naveen2094.github.io/portfolio/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://yourdomain.com/">
+  <link rel="canonical" href="https://naveen2094.github.io/portfolio/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +42,6 @@
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -52,6 +55,9 @@
 
     <!-- ======================= HERO ======================= -->
 <section id="hero" class="hero">
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+
   <div class="container hero-grid clean-hero">
     
     <!-- LEFT SIDE (TEXT) -->
@@ -64,7 +70,6 @@
 
       <div class="hero-cta">
         <a class="btn-primary" href="#projects">See Work</a>
-        <a class="btn-ghost" href="#contact">Get in Touch</a>
       </div>
 
       <!-- Social icons -->
@@ -125,15 +130,16 @@
       <picture>
         <img class="avatar glow-avatar"
           src="assets/img/avatar-200.webp"
-          alt="Photo of Naveen Kumar"
+          alt="Professional headshot of Naveen Kumar"
           width="120"
-          height="120">
+          height="120"
+          decoding="async">
       </picture>
 
-      <ul class="hero-stats clean-stats">
-        <li><strong>8.87</strong><span>CGPA</span></li>
-        <li><strong>5+</strong><span>Projects</span></li>
-        <li><strong>100+</strong><span>Commits</span></li>
+      <ul class="hero-stats clean-stats" aria-label="Key statistics" id="stats-container">
+        <li><strong class="stat-num" data-target="8.87">0</strong><span>CGPA</span></li>
+        <li><strong class="stat-num" data-target="5">0</strong><span>Projects+</span></li>
+        <li><strong class="stat-num" data-target="100">0</strong><span>Commits+</span></li>
       </ul>
     </div>
   </div>
@@ -218,7 +224,7 @@
   <div class="proj-screenshot" aria-hidden="true">
     <img src="assets/img/projects/CS_home.png"
          alt="ClimaSense Weather Dashboard screenshot"
-         loading="lazy" width="620" height="360">
+         loading="lazy" decoding="async" width="620" height="360">
   </div>
 
   <div class="proj-body">
@@ -255,7 +261,7 @@
            data-img="assets/img/projects/VC_home.png"
            tabindex="0">
     <div class="proj-screenshot">
-      <img src="assets/img/projects/VC_home.png" alt="Volunteer Connect screenshot" loading="lazy" width="620" height="360">
+      <img src="assets/img/projects/VC_home.png" alt="Volunteer Connect screenshot" loading="lazy" decoding="async" width="620" height="360">
     </div>
 
     <div class="proj-body">
@@ -286,7 +292,7 @@
            data-img="assets/img/projects/SP_home.png"
            tabindex="0">
     <div class="proj-screenshot">
-      <img src="assets/img/projects/SP_home.png" alt="Sports Pulse screenshot" loading="lazy" width="620" height="360">
+      <img src="assets/img/projects/SP_home.png" alt="Sports Pulse screenshot" loading="lazy" decoding="async" width="620" height="360">
     </div>
 
     <div class="proj-body">
@@ -317,7 +323,7 @@
            data-img="assets/img/projects/e-commerce.png"
            tabindex="0">
     <div class="proj-screenshot">
-      <img src="assets/img/projects/e-commerce.png" alt="ElectroMart screenshot" loading="lazy" width="620" height="360">
+      <img src="assets/img/projects/e-commerce.png" alt="ElectroMart screenshot" loading="lazy" decoding="async" width="620" height="360">
       
     </div>
 
@@ -344,6 +350,12 @@
 
 </div>
 
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="https://github.com/Naveen2094" target="_blank" rel="noopener noreferrer" class="btn-ghost" aria-label="View All Projects on GitHub">
+        View All on GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
     </section>
 
 
@@ -355,17 +367,65 @@
         <p>Technologies I use day to day.</p>
       </div>
 
-      <div class="tools-grid">
-        <div class="tool">VS Code</div>
-        <div class="tool">Git & GitHub</div>
-        <div class="tool">XAMPP</div>
-        <div class="tool">Figma</div>
-        <div class="tool">Canva</div>
-      </div>
+      <div class="skills-layout">
+        <!-- LEFT: Tools & Certifications -->
+        <div class="skills-left">
+          <!-- DEVICONS SETUP -->
+          <div class="tools-grid">
+            <div class="tool-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="tool-icon">
+              <div class="tool-info">
+                <span class="tool-name">HTML / CSS</span>
+                <div class="tool-bar"><div class="tool-progress" style="width: 90%;"></div></div>
+              </div>
+            </div>
+            <div class="tool-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tool-icon">
+              <div class="tool-info">
+                <span class="tool-name">JavaScript</span>
+                <div class="tool-bar"><div class="tool-progress" style="width: 85%;"></div></div>
+              </div>
+            </div>
+            <div class="tool-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="tool-icon">
+              <div class="tool-info">
+                <span class="tool-name">React</span>
+                <div class="tool-bar"><div class="tool-progress" style="width: 80%;"></div></div>
+              </div>
+            </div>
+            <div class="tool-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tool-icon">
+              <div class="tool-info">
+                <span class="tool-name">Node.js</span>
+                <div class="tool-bar"><div class="tool-progress" style="width: 75%;"></div></div>
+              </div>
+            </div>
+            <div class="tool-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="tool-icon">
+              <div class="tool-info">
+                <span class="tool-name">VS Code</span>
+                <div class="tool-bar"><div class="tool-progress" style="width: 95%;"></div></div>
+              </div>
+            </div>
+            <div class="tool-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="tool-icon">
+              <div class="tool-info">
+                <span class="tool-name">Git & GitHub</span>
+                <div class="tool-bar"><div class="tool-progress" style="width: 85%;"></div></div>
+              </div>
+            </div>
+            <div class="tool-chip">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="tool-icon">
+              <div class="tool-info">
+                <span class="tool-name">Figma</span>
+                <div class="tool-bar"><div class="tool-progress" style="width: 70%;"></div></div>
+              </div>
+            </div>
+          </div>
 
-      <div style="margin-top:1.2rem;">
-        <h3>Certifications</h3>
-<ul class="about-list certifications">
+          <div style="margin-top:2.5rem;">
+            <h3>Certifications</h3>
+            <ul class="about-list certifications">
 
 <li>
   <a href="https://pinnaclelabs.tech/certificate-verification/?rid=UEwvMjAyNS9ERUNQNy8wNTROYXZlZW4gS3VtYXIgUA=="
@@ -408,91 +468,44 @@
     </a>
   </li>
 
-</ul>
-
-      </div>
-    </section>
-
-
-
-    <!-- ======================= CONTACT ======================= -->
-    <section id="contact" class="section container contact-section">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <p>Let's build something together — send a message or reach out via LinkedIn / GitHub.</p>
-      </div>
-
-      <div class="contact-grid">
-
-        <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="sr-only">
-            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-          </p>
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" id="name" required placeholder="Your name">
-          </label>
-
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" id="email" required placeholder="you@example.com">
-          </label>
-
-          <label>
-            <span>Message</span>
-            <textarea name="message" id="message" rows="5" required placeholder="How can I help?"></textarea>
-          </label>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-primary">Send Message</button>
-            <button type="reset" class="btn-ghost">Reset</button>
+            </ul>
           </div>
+        </div>
 
-          <p id="form-msg" class="form-msg" role="status" aria-live="polite"></p>
-        </form>
-
+        <!-- RIGHT: Quick Contacts -->
         <aside class="contact-info">
-  <h3 class="qc-title">Quick contacts</h3>
-
-  <ul class="qc-list">
-
-    <li>
-      <span class="qc-icon">📞</span>
-      <a href="tel:+918667263491">+91 86672 63491</a>
-    </li>
-
-    <li>
-      <span class="qc-icon">✉️</span>
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=naveenkumarp2094@gmail.com" target="_blank" rel="noopener noreferrer">
-        naveenkumarp2094@gmail.com
-      </a>
-    </li>
-
-    <li>
-      <span class="qc-icon">💼</span>
-      <a href="https://www.linkedin.com/in/naveenkumarp20" target="_blank">
-        linkedin.com/in/naveenkumarp20
-      </a>
-    </li>
-
-    <li>
-      <span class="qc-icon">🐙</span>
-      <a href="https://github.com/Naveen2094" target="_blank">
-        github.com/Naveen2094
-      </a>
-    </li>
-
-    <li class="qc-location">
-      <span class="qc-icon">📍</span>
-      <span>Chennai, India</span>
-    </li>
-
-  </ul>
-</aside>
+          <h3 class="qc-title">Quick contacts</h3>
+          <ul class="qc-list">
+            <li>
+              <span class="qc-icon">📞</span>
+              <a href="tel:+918667263491">+91 86672 63491</a>
+            </li>
+            <li>
+              <span class="qc-icon">✉️</span>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=naveenkumarp2094@gmail.com" target="_blank" rel="noopener noreferrer">
+                naveenkumarp2094@gmail.com
+              </a>
+            </li>
+            <li>
+              <span class="qc-icon">💼</span>
+              <a href="https://www.linkedin.com/in/naveenkumarp20" target="_blank" rel="noopener noreferrer">
+                linkedin.com/in/naveenkumarp20
+              </a>
+            </li>
+            <li>
+              <span class="qc-icon">🐙</span>
+              <a href="https://github.com/Naveen2094" target="_blank" rel="noopener noreferrer">
+                github.com/Naveen2094
+              </a>
+            </li>
+            <li class="qc-location">
+              <span class="qc-icon">📍</span>
+              <span>Chennai, India</span>
+            </li>
+          </ul>
+        </aside>
 
       </div>
-    </section>
 
   </main>
 
