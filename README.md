@@ -101,7 +101,7 @@ Mini e-commerce website with cart functionality and filtering.
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](images/home.png)
+![Home Page](assets/img/Home.png)
 
 ---
 
