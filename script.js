@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalDesc = $('#modal-desc');
   const modalTech = $('#modal-tech');
   const modalClose = $('#modal-close');
-  const form = $('#contact-form');
-  const formMsg = $('#form-msg');
 
   // ---------- Year (footer) ----------
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -191,56 +189,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // ---------- Contact form (Netlify AJAX submit) ----------
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nm = (form.name && form.name.value || '').trim();
-      const email = (form.email && form.email.value || '').trim();
-      const msg = (form.message && form.message.value || '').trim();
-
-      if (!nm || !email || !msg) {
-        if (formMsg) {
-          formMsg.textContent = 'Please fill all fields.';
-          formMsg.style.color = 'var(--danger)';
-        }
-        return;
-      }
-
-      const formData = new FormData(form);
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(() => {
-        if (formMsg) {
-          formMsg.textContent = 'Thanks! Your message has been sent successfully.';
-          formMsg.style.color = 'var(--success)';
-        }
-        form.reset();
-      })
-      .catch((error) => {
-        if (formMsg) {
-          formMsg.textContent = 'Oops! There was a problem submitting your form.';
-          formMsg.style.color = 'var(--danger)';
-        }
-      });
-    });
-  }
-
   // ---------- Reveal-on-scroll (adds .reveal) ----------
   (function initReveal() {
-    if (preferReducedMotion) {
-      $$('.project-card, .skills-card, .about-text, .contact-form, .hero-card').forEach(el => el.classList.add('reveal'));
-      return;
-    }
-    const revealEls = $$('.project-card, .skills-card, .about-text, .contact-form, .hero-card');
-    if (!revealEls.length || !('IntersectionObserver' in window)) {
+    const revealEls = $$('.project-card, .skills-card, .about-text, .contact-info, .hero-card, .tool-chip');
+    if (!revealEls.length) return;
+
+    if (preferReducedMotion || !('IntersectionObserver' in window)) {
       revealEls.forEach(el => el.classList.add('reveal'));
       return;
     }
+
     const ro = new IntersectionObserver((entries, obs) => {
       entries.forEach(ent => {
         if (ent.isIntersecting) {
@@ -248,8 +206,48 @@ document.addEventListener('DOMContentLoaded', () => {
           obs.unobserve(ent.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
     revealEls.forEach(el => ro.observe(el));
+  })();
+
+  // ---------- Count-Up Stats ----------
+  (function initStats() {
+    const container = $('#stats-container');
+    const nums = $$('.stat-num');
+    if (!container || !nums.length) return;
+
+    if (preferReducedMotion || !('IntersectionObserver' in window)) {
+      nums.forEach(n => n.textContent = n.dataset.target);
+      return;
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        nums.forEach(num => {
+          const target = parseFloat(num.dataset.target);
+          const isFloat = num.dataset.target.includes('.');
+          const duration = 2000;
+          let startTimestamp = null;
+
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = target * easeOut;
+            num.textContent = isFloat ? current.toFixed(2) : Math.floor(current);
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              num.textContent = num.dataset.target; // ensure exact ending string
+            }
+          };
+          window.requestAnimationFrame(step);
+        });
+        obs.unobserve(container);
+      }
+    }, { threshold: 0.5 });
+    obs.observe(container);
   })();
 
   // ---------- small defensive cleanup ----------
