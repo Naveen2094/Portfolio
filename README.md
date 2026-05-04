@@ -100,7 +100,8 @@ Mini e-commerce website with cart functionality and filtering.
 
 ## 📸 Screenshots
 
-*(Add screenshots of your portfolio here for better impact)*
+### 🏠 Home Page
+![Home Page](images/home.png)
 
 ---
 
